@@ -1,0 +1,425 @@
+Project 2
+Bridgette Stranko
+Jacob Tubman
+
+Problem
+
+
+Write a function that computes the average and standard deviation of four scores.  
+The function will have six parameters.
+Embed the function in a driver program that allows you to test the function again and again until you tell the program you are finished. 
+
+In addition, included the following two functions
+1)	A function that finds the max and min of the data set
+2)	A function that sorts the data set from smallest to largest value. 
+
+Use the five step process (Problem-Solution-Algorithm-Pseudocode-Source Code) to create this program. 
+Develop a complete solution for this problem. 
+
+The program should display the following information
+a)	The data set as entered by the user
+b)	The sorted data set
+c)	The mean, standard deviation, max and min of the data set
+
+Data should be displayed as being precise to hundredths.  
+The user should be told that input data should be precise to tenths. 
+
+The notes for the five step process should be saved in a Notes.txt file.  
+The operational source code should be saved in a separate file main.txt.  
+
+
+
+
+Solution
+
+
+To calculate the average and standard deviation of four scores:  
+
+Get input from user (precise to tenths) for the four scores.
+Assign the input to the values respectively:  S1, S2, S3 and S4 
+
+Average = (S1 + S2 + S3 + S4)/4
+Standard Deviation=sqrt(((S1-Avergae)^2+(S2-Avergae)^2+(S3-Avergae)^2+(S4-Avergae)^2  ) / 4)
+
+To find the min and max: 
+
+	If S1 <= S2 and S1 <= S3 and S1 <= S4 then Min = S1
+	Else if S2 <= S1 and S2 <= S3 and S2 <= S4 then Min = S2
+	Else if S3 <= S1 and S3 <= S2 and S3 <= S4 then Min = S3
+	Else Min = S4 
+
+	If S1 >= S2 and S1 >= S3 and S1 >= S4 then Max = S1 
+	Else if S2 >= S1 and S2 >= S3 and S2 >= S4 then Max = S2
+	Else if S3 >= S1 and S3 >= S2 and S3 >= S4 then Max = S3 
+	Else Max = S4
+
+To sort the numbers and display them in order: 
+
+	if(S1 > S2) then swap values S1, S2 
+	if(S1 > S3) then swap values S1, S3
+	if(S1 > S4) then swap values S1, S4
+	if(S2 > S3) then swap values S2, S3
+	if(S2 > S4) then swap values S2, S4
+	if(S3 > S4) then swap values S3, S4
+	
+	Display the scores in order: 
+The Scores in order are "S1”, “S2”, “S3”, “S4”
+
+
+To swap the scores
+Declare a temporary place holder (temp)
+	
+	temp = value1
+	value1 = value2
+	value2 = temp
+
+To determine whether or not the user wants to run the program again: 
+
+Declare a char variable ans
+
+Do the above calculations while the user input for ans is Y or y
+
+Baseline case is 1.0, 2.0, 3.0, 4.0
+The data entered by the user is 1.0, 2.0, 3.0, 4.0
+The sorted data set is 1.0, 2.0, 3.0, 4.0
+The Mean = (1+2+3+4)/4 = 2.50
+The Standard Deviation = sqrt(((S1-Avergae)^2+(S2-Avergae)^2+(S3-Avergae)^2+(S4-Avergae)^2  ) / 4) = 1.19
+The Max = 4
+The Min = 1
+
+
+Algorithm
+
+Include IO Stream 
+Include CMath
+Using namespace std; 
+
+Declare a user defined void function named calculate_scores to get the four scores and calculates 
+average and standard deviation which returns all 6 parameters (double: S1, S2, S3, S4, Avg and Std_Dev)
+
+Declare a user defined void function named get_input to get the user’s input for the four scores
+and returns all 4 parameters (double: S1, S2, S3, S4)
+
+Declare a user defined void function named get_min_max to find minimum and maximum using four scores 
+from the function that called it.  Returns only the minimum and maximum 
+(double S1, S2, S3, S4, and returns double Min and Max); 
+
+Declare a user defined void function named order_scores to order the scores from the function that called it. 
+Display only. Nothing is returned (double: S1, S2, S3, S4)
+
+Declare a user defined void function to swap values.  The new values are returned 
+(get double value1 and value2 and return new values for double value1 and value2)
+
+Declare a user defined void function named show_results that displays Min, Max, Avg and Std_Dev. Display only.  
+Nothing is returned (double Min, Max, Avg and Std_Dev)
+
+Declare main as an integer
+Open main
+Declare variables:
+	char ans; 	 
+	double score1, score2, score3, score4, min, max, average, std_deviation; 
+
+	do 
+	(open do while loop)  
+		
+
+	Call the function calculate_scores (score1, score2, score3, score4, average, std_deviation);
+	Call the function get_min_max (score1, score2, score3, score4, min, max); 
+	
+	Set Precision to tenths
+	Display Scores:  "You entered "score1", "score2", "score3", and score4	'
+
+	Call the function order_scores(score1, score2, score3, score4); 
+
+	Call the function show_results(min, max, average, std_deviation); 
+		
+	Print to the screen: Would you like to run the program again?
+	Print to the screen on a new line (Type Y for yes): 
+	
+	Get user input for ans 
+
+	Continue to run the do while loop while ans = Y or y 
+	Any other input will end the do while loop
+
+	Return 0 to main and end main
+
+Define Calculate_scores (double: S1, S2, S3, S4, Avg and Std_Dev)
+	Call UDF get input and return 4 scores
+	Calculates the average
+	Avg = (S1 + S2 + S3 + S4)/4
+
+	Calculates the standard deviation
+	Std_Deviation = sqrt((pow((S1-Avg), 2)+ pow((S2-Avg), 2)+ pow((S3-Avg), 2) + 
+                              pow((S4-Avg), 2))/4) 
+
+Define get_input (double: S1, S2, S3, S4) 
+	Request input from user:
+	Enter four scores. Please round to the nearest tenth.
+        Don't forget to put a space between the scores: 
+
+	Get input from user for S1, S2, S3, and S4
+  	
+	return the four scores
+	
+All four scores are returned 
+	
+Define get_min_max (double S1, S2, S3, S4, and returns double Min and Max)
+	If S1 <= S2 and S1 <= S3 and S1 <= S4 then Min = S1
+	Else if S2 <= S1 and S2 <= S3 and S2 <= S4 then Min = S2
+	Else if S3 <= S1 and S3 <= S2 and S3 <= S4 then Min = S3
+	Else Min = S4 
+
+	If S1 >= S2 and S1 >= S3 and S1 >= S4 then Max = S1 
+	Else if S2 >= S1 and S2 >= S3 and S2 >= S4 then Max = S2
+	Else if S3 >= S1 and S3 >= S2 and S3 >= S4 then Max = S3 
+	Else Max = S4
+
+Min and Max are returned
+
+Define order_scores (double: S1, S2, S3, S4)
+	if(S1 > S2) call swap_values and swap S1, S2 
+	if(S1 > S3) call swap_values and swap S1, S3
+	if(S1 > S4) call swap_values and swap S1, S4
+	if(S2 > S3) call swap_values and swap S2, S3
+	if(S2 > S4) call swap_values and swap S2, S4
+	if(S3 > S4) call swap_values and swap S3, S4
+	
+	Set Precision to hundreths
+	Display the scores in order: 
+	The Scores in order are "S1”, “S2”, “S3”, “S4”
+
+Define swap_values(double: value1, value2)
+Declare a temporary place holder (temp) as an integer
+	
+	temp = value1
+	value1 = value2
+	value2 = temp
+
+Define show_results (double Min, Max, Avg and Std_Dev)
+
+	Set Precision to hundreths
+	Display the results from get_min_max
+ 	"Your highest score was “Max” and your lowest score was "Min”
+ 	"The mean is "Avg" and the standard deviation is "Std_Dev”
+
+
+
+
+Pseudo Code 
+
+
+Include IO Stream 
+Include CMath
+
+Using namespace std; 
+
+Comment: UDF to get the four scores and calculates average and standard deviation
+Comment: Returns all 6 parameters
+void calculate_scores(double& S1, double& S2, double& S3, double& S4, double& Avg, double& Std_Deviation); 
+
+Comment: UDF to get user input for the four scores
+Comment: Returns all 4 parameters
+void get_input(double& Score1, double& Score2, double& Score3, double& Score4); 
+
+Comment: UDF to find minimum and maximum using four scores from the function that called it
+Comment: Returns only the minimum and maximum
+void get_min_max(double S1, double S2, double S3, double S4, double& Min, double& Max); 
+
+Comment: UDF to order the scores from the function that called it 
+Comment: Display only. Nothing is returned
+void order_scores(double S1, double S2, double S3, double S4);  
+
+Comment: UDF to swap values
+Comment: The new values are returned
+void swap_values(double& value1, double& value2);  
+
+Comment: UDF to format the results for highest and lowest score, the average, and the standard deviation
+Comment: Display only.  Nothing is returned
+void show_results(double Min, double Max, double Avg, double Std_Dev);
+
+int main ()
+{ 
+	Comment: Declare variables
+	char ans; Comment:  used for do while loop	 
+	double score1, score2, score3, score4, min, max, average, std_deviation; 
+
+
+	do 
+	{ 
+
+		Comment: Retrieves user input and calculates the average and standard deviation
+		calculate_scores(score1, score2, score3, score4, average, std_deviation);
+
+		
+		Comment: Find the lowest and highest numbers
+		get_min_max(score1, score2, score3, score4, min, max); 
+		
+		
+		Comment: Sets the precision to tenths 
+		To Screen: .setf(ios::fixed); 
+		To Screen: .setf(ios::showpoint); 
+		To Screen: .precision(1);
+
+		Comment: Display the scores in the order they were entered
+		To Screen:  << "(new line)For the scores " << score1 << ", " << score2 << ", " << score3 
+			<< ", and " << score4 << ": "<<end line << end line;
+
+		Comment: Display the scores in order
+		order_scores(score1, score2, score3, score4); 
+
+		Comment: Displays the lowest score, highest score, the average and standard deviation
+		show_results(min, max, average, std_deviation); 
+		
+		To Screen: << "Would you like to run the program again? (new line)"
+			<< " (Type Y for yes): "; 
+
+		Comment: User lets the program know if they would like to run again
+		From Screen >> ans; 
+
+		Comment: Formats a new line between runs
+		To Screen: << end line; 
+	} while (ans == 'Y' ||  ans == 'y'); 
+	Comment: end do while loop if ans does not equal Y or y 
+	Comment: Program will terminate if any other character or integer is entered
+
+	Comment: return 0 to main
+	return 0; 
+} 
+
+Comment:  Function definitions for the UDF declared above main
+void calculate_scores(double& S1, double& S2, double& S3, double& S4, double& Avg, double& Std_Deviation)
+{
+	Comment: call UDF get input and return 4 scores
+	get_input (S1, S2, S3, S4); 
+
+	Comment: calculates the average
+	Avg = (S1 + S2 + S3 + S4)/4; 
+
+	Comment: calculates the standard deviation
+	Std_Deviation = sqrt((pow((S1-Avg), 2)+ pow((S2-Avg), 2)+ pow((S3-Avg), 2) + 
+                              pow((S4-Avg), 2))/4);  
+} 
+
+void get_input(double& Score1, double& Score2, double& Score3, double& Score4)
+{
+	Comment: request input from user
+	To Screen: <<"(new line)Enter four scores. Please round to the nearest tenth.(new line)"
+		<<"Don't forget to put a space between the scores: "; 
+
+	Comment: user input for the four scores
+	From Screen >> Score1 >> Score2 >> Score3 >> Score4;  
+	
+	Comment: all four scores are returned 
+	return; 
+} 
+
+void get_min_max(double S1, double S2, double S3, double S4, double& Min, double& Max)
+{ 
+
+	Comment: If S1 is the lowest number then Min is assigned the value of S1
+	if(S1 <= S2 && S1 <= S3 && S1 <= S4)
+		Min = S1; 
+
+	Comment: If S2 is the lowest number then Min is assigned the value of S2
+	else if (S2 <= S1 && S2 <= S3 && S2 <= S4)
+		Min = S2; 
+
+	Comment: If S3 is the lowest number then Min is assigned the value of S3
+	else if (S3 <= S1 && S3 <= S2 && S3 <= S4)
+		Min = S3; 
+	
+	Comment: If all above Booleans are false then S4 must be the lowest number
+	Comment: Min is assigned the value of S4
+	else 
+		Min = S4; 
+
+
+	Comment: If S1 is the highest number then Max is assigned the value of S1
+	if (S1 >= S2 && S1 >= S3 && S1 >= S4)
+		Max = S1; 
+	
+	Comment: If S2 is the highest number then Max is assigned the value of S2
+	else if (S2 >= S1 && S2 >= S3 && S2 >= S4)
+		Max = S2; 
+
+	Comment: If S3 is the highest number then Max is assigned the value of S3
+	else if (S3 >= S1 && S3 >= S2 && S3 >= S4)
+		Max = S3; 
+	
+	Comment: If all above Booleans are false then S4 must be the highest number
+	Comment: Max is assigned the value of S4
+	else 
+		Max = S4;
+
+} 
+
+void order_scores(double S1, double S2, double S3, double S4)
+{
+	
+	Comment: Check to see if S1 is greater than S2, S3 and then S4
+	Comment: If S1 is greater than any of these then swap the values
+	if(S1 > S2) 
+		swap_values(S1, S2); 
+
+	if(S1 > S3) 
+		swap_values(S1, S3); 
+
+	if(S1 > S4) 
+		swap_values(S1, S4);
+
+	Comment: Check to see if S2 is greater than S3 and then S4
+	Comment: If S1 is greater than any of these then swap the values
+	Comment: Do not need to check S1.  S1 is already the lowest number
+	if(S2 > S3) 
+		swap_values(S2, S3); 
+
+	if(S2 > S4) 
+		swap_values(S2, S4); 
+
+	Comment: Check to see if S3 is greater than S4 
+	Comment: If S3 is greater than S4 then swap the values
+	Comment: Do not need to check S1 and S2 they are already in order
+	if(S3 > S4) 
+		swap_values(S3, S4); 
+
+		Comment: The values have been switched and the scores are now in order
+
+
+	   Comment: Sets the precision to hundreths 
+	   To Screen: .setf(ios::fixed); 
+	   To Screen: .setf(ios::showpoint); 
+	   To Screen: .precision(2);
+
+           Comment: shows the scores in order
+	   To Screen:  << "The Scores in order are " << S1
+			 << ", " << S2 << ", " << S3 << ", " << S4 << end line;  
+		
+		Comment: Display only.  Nothing is returned
+		return; 
+} 
+
+void swap_values(double& value1, double& value2)
+{ 
+	Comment: Declare a temporary place holder
+	double temp; 
+
+	Comment: swap the values
+	temp = value1;    Comment: temp = value1
+	value1 = value2; Comment: value1 now equals value2
+	value2 = temp;    Comment: value2 now equals temp (which was holding value1) 
+}
+
+void show_results(double Min, double Max, double Avg, double Std_Dev)
+{ 
+	Comment: Sets the precision to hundreths 
+	To Screen: .setf(ios::fixed); 
+	To Screen: .setf(ios::showpoint); 
+	To Screen: .precision(2);
+
+	Comment: displays the lowest score, highest score, average and standard deviation
+	To Screen: << "Your highest score was " << Max << " and your lowest score was " << Min << end line  
+		<< "The mean is " << Avg  << " and the standard deviation is " << Std_Dev
+		<<end line <<end line; 
+
+	Comment: Display only nothing is returned
+} 
